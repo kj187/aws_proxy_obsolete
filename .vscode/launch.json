@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "AWS Proxy Local Debug",
+            "request": "launch",
+            "type": "go",
+            "mode": "debug", 
+            "remotePath": "", 
+            "port": 2345, 
+            "host": "127.0.0.1", 
+            "program": "${workspaceFolder}/src/cmd/aws_proxy/main.go", 
+            "env": {}, 
+            "args": ["proxy:rds"],
+            "showLog": false,
+            "trace": "error"
+        }
+    ]
+}
