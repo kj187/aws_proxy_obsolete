@@ -1,22 +1,13 @@
 # AWS Proxy
 
-```
-This project is still work in progress !!!
-```
-
 ## Problem
 
-In a modern infrastructure architecture services like RDS, ElastiCache, ElasticSearch, MQ etc. should be live in a protected private network which is not accessable from the public. Some of these services are providing web interfaces which are quite helpful to debug problems. But how is it possible to reach them in the browser? And how is it possible to have a look in a database or any other AWS service? 
+In a modern infrastructure architecture services like RDS, ElastiCache, ElasticSearch, MQ etc. should be live in a protected private network which is not accessable from the public. Some of these services are providing web interfaces which are quite helpful to debug problems. But how is it possible to reach them in the browser? And how is it possible to have a look in a database or any other AWS service which is protected and not accessable via the AWS Console? 
 
 One way to solve this kind of problem is to open a **proxy** to these services. 
 And on this way the **AWS Proxy** as a small CLI utility comes into play to support you with that.
 
 ![AWS Proxy](doc/aws_proxy.png "AWS Proxy")
-
-## Advantages
-
-- You dont need to handle with proxy configuration
-- You dont need to know endpoint data (AWS Proxy is like a wizard)
 
 ## Requirements
 
@@ -26,7 +17,7 @@ To open a proxy to your private network services, we need something like an brid
 
 ### AWS CLI access
 
-TODO
+AWS Proxy is build like a wizard. You dont need to know specific endpoint or ports, it will fetch all that data from AWS via the AWS SDK. Everything you need is a valid set of CLI credentials. The best way is to have them stored as a profile in `~/.aws`. 
 
 ## Installation
 
@@ -42,18 +33,26 @@ TODO
 - Elasticache (Redis)
 - MQ Service (RabbitMQ)
 
-## Usage 
+## Configuration
 
-### Configuration
+The whole configuration for AWS Proxy is stored in `~/.aws_proxy.yaml`. 
+To create that file with a default set of configuration, just execute:
 
-TODO 
-
-`~/.aws_proxy.yaml
 ```
 aws_proxy config
 ```
 
-#### Bastion
+### AWS
+
+You need to specify the region and your AWS profile
+
+```
+aws:
+  region: eu-central-1
+  profile: myprofile
+```
+
+### Bastion
 
 If your bastion server has a static IP and you know that, you could add this information to the configuration file 
 `~/.aws_proxy.yaml`
@@ -84,22 +83,37 @@ bastion:
     port: 22
 ```
 
-### Help
+### Proxy
 
-TODO
+If you want to change the local proxy ports, just update the following part
+
+```
+proxy:
+  local_ports:
+    rds: 6546
+```
+
+## Help
+
+If you need help or if you need some more background information, just use one of the flags:
 
 ```
 aws_proxy --help
-aws_proxy -p
-aws_proxy -v
+aws_proxy --verbose
 ```
+
+## Examples
 
 ### Amazon RDS
 
-TODO 
+The following command will give you a complete list of all your existing RDS databases. You can choose the one you need. 
 
 ```
 aws_proxy proxy:rds 
+```
+
+You can skip this step if you know the database you want to proxy. Just add the DBName as flag
+
+```
 aws_proxy proxy:rds -n mydbname
-aws_proxy proxy:rds -n mydbname -v 
 ```
