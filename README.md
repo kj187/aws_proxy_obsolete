@@ -1,5 +1,7 @@
 # AWS Proxy
 
+The AWS Proxy enables you to reach AWS services which are protected due to a private network.
+
 ## Problem
 
 In a modern infrastructure architecture services like RDS, ElastiCache, ElasticSearch, MQ etc. should be live in a protected private network which is not accessable from the public. Some of these services are providing web interfaces which are quite helpful to debug problems. But how is it possible to reach them in the browser? And how is it possible to have a look in a database or any other AWS service which is protected and not accessable via the AWS Console? 
