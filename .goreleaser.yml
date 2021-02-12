@@ -1,11 +1,7 @@
-# This is an example .goreleaser.yml file with some sane defaults.
-# Make sure to check the documentation at http://goreleaser.com
+# http://goreleaser.com
 before:
   hooks:
-    # You may remove this if you don't use go modules.
-    - go mod download
-    # you may remove this if you don't need go generate
-    - go generate ./...
+    - go mod vendor
 builds:
   - env:
       - CGO_ENABLED=0
@@ -31,3 +27,5 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
+env_files:
+  github_token: ~/.github_token

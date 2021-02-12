@@ -8,4 +8,4 @@ gr_install:
 gr_test:
 	goreleaser --snapshot --skip-publish --rm-dist
 gr_release:
-	goreleaser release
+	goreleaser release --rm-dist
