@@ -1,2 +1,3 @@
 .aws_proxy.yaml
 vendor/
+dist/
