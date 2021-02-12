@@ -1,15 +1,33 @@
 # AWS Proxy
 
+[![Release](https://img.shields.io/github/release/kj187/aws_proxy?style=for-the-badge)](https://github.com/kj187/aws_proxy/releases/latest)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=for-the-badge)](/LICENSE.md)
+[![SayThanks.io](https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg?style=for-the-badge)](https://saythanks.io/to/mail%40kj187.de)
+[![Powered By: GoReleaser](https://img.shields.io/badge/powered%20by-goreleaser-green.svg?style=for-the-badge)](https://github.com/goreleaser)
+
 The AWS Proxy enables you to reach AWS services which are protected due to a private network.
 
 ## Problem
 
-In a modern infrastructure architecture services like RDS, ElastiCache, ElasticSearch, MQ etc. should be live in a protected private network which is not accessable from the public. Some of these services are providing web interfaces which are quite helpful to debug problems. But how is it possible to reach them in the browser? And how is it possible to have a look in a database or any other AWS service which is protected and not accessable via the AWS Console? 
+In a modern infrastructure architecture, services like RDS, ElastiCache, ElasticSearch, MQ etc. should be live in a protected private network which is not accessable from the public. Some of these services are providing web interfaces which are quite helpful to debug problems. But how is it possible to reach them in the browser? And how is it possible to have a look in a database or any other AWS service which is protected and not accessable via the AWS Console? 
 
 One way to solve this kind of problem is to open a **proxy** to these services. 
 And on this way the **AWS Proxy** as a small CLI utility comes into play to support you with that.
 
-![AWS Proxy](doc/aws_proxy.png "AWS Proxy")
+<br>
+<p align="center">
+  <img src="doc/aws_proxy.png" alt="AWS Proxy" />
+</p>
+
+## Installation
+
+### Download from releases page
+
+- Go to the [Releases Page](https://github.com/kj187/aws_proxy/releases)
+- Downloading the binary for your operating system: e.g., if you are on a Mac, download `aws_proxy_darwin_amd64`, if you are on Windows, download `aws_proxy_windows_amd64.exe` etc
+- Rename the downloaded file to `aws_proxy`
+- Add execute permissions to the binary. On Linux and Mac: `chmod u+x aws_proxy`
+- Put the binary somewhere on your PATH. On Linux and Mac: `mv aws_proxy /usr/local/bin/aws_proxy`
 
 ## Requirements
 
@@ -21,9 +39,6 @@ To open a proxy to your private network services, we need something like an brid
 
 AWS Proxy is build like a wizard. You dont need to know specific endpoint or ports, it will fetch all that data from AWS via the AWS SDK. Everything you need is a valid set of CLI credentials. The best way is to have them stored as a profile in `~/.aws`. 
 
-## Installation
-
-TODO
 
 ## Supported AWS services
 
